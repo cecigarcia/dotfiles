@@ -1,0 +1,50 @@
+[user]
+  name = Cecilia Garcia
+  email = cecilia.garcia@trabesoluciones.com
+
+[core]
+  editor = /usr/bin/vim
+  excludesfile = /Users/ceci/.gitconfig.excludesfile
+
+[http]
+  sslVerify = false
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+
+[apply]
+  whitespace = nowarn
+
+[alias]
+  st = status -sb
+  lol = log --abbrev-commit --decorate  --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
+  co = checkout
+  ci = commit
+  tags = tag -l
+  remotes = remote -v
+  branches = branch -a
+  punch = push --force
+  amend = commit --amend -C HEAD
+  reword = commit --amend
+  rmb = branch -d
+  rmrb = push --delete origin
+  rmtfb = !sh -c 'git branch -D $1 && git push origin :$1' -
+
+  # Kudos to @madtrick
+  nuke = reset --hard HEAD
+
+  # http://robots.thoughtbot.com/intent-to-add
+  aa = add --all --intent-to-add
+  ap = add --patch
+
+[push]
+  default = current
+
+[url "git@bitbucket.org:trabe/"]
+  insteadOf = trabe:
+
+[url "git@bitbucket.org:cecig/"]
+  insteadOf = me:

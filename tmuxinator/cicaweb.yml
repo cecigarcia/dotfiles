@@ -1,0 +1,18 @@
+# ~/.tmuxinator/cicaweb.yml
+
+name: cicaweb
+root: ~/code
+
+# Runs before everything
+pre: mysql.server start
+
+windows:
+  - cicaweb:
+      root: ~/code/cica-web
+      layout: 1904,364x88,0,0[364x67,0,0,24,364x20,0,68{115x20,0,68,26,129x20,116,68,28,118x20,246,68,29}]
+      panes:
+        - vim
+        - guard
+        - rails c
+        - foreman start
+  

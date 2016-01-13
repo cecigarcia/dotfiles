@@ -1,0 +1,34 @@
+# ~/.tmuxinator/sai.yml
+
+name: sai
+root: ~/code/sai
+
+# Runs before everything
+pre: mysql.server start
+
+windows:
+  - neosai:
+      root: ~/code/sai/sai-neosai
+      layout: 1904,364x88,0,0[364x67,0,0,24,364x20,0,68{115x20,0,68,26,129x20,116,68,28,118x20,246,68,29}]
+      panes:
+        - vim
+        - guard
+        - rails c
+        - foreman start
+  - samples:
+      root: ~/code/sai/sai-samples
+      layout: 1904,364x88,0,0[364x67,0,0,24,364x20,0,68{115x20,0,68,26,129x20,116,68,28,118x20,246,68,29}]
+      panes:
+        - vim
+        - guard
+        - script/console
+        - foreman start
+  - web:
+      root: ~/code/sai/sai-web
+      layout: 1904,364x88,0,0[364x67,0,0,24,364x20,0,68{115x20,0,68,26,129x20,116,68,28,118x20,246,68,29}]
+      panes:
+        - vim
+        - guard
+        - rails c
+        - foreman start
+
