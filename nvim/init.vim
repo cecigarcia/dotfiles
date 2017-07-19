@@ -1,5 +1,5 @@
  if &shell =~# 'fish$'
-    "set shell=sh
+    set shell=bash
  endif
 
  set nocompatible              " be iMproved, required
@@ -56,7 +56,7 @@
 
  " ~ Use system clipboard as default buffer
  " ~ Allows yanking between vim/gvim instances
- "set clipboard=unnamed
+ set clipboard=unnamed
 
  " ~ Diff ~
  set diffopt+=iwhite
@@ -76,6 +76,7 @@
  " ~ Utils ~
  Plugin 'The-NERD-tree'
  Plugin 'jistr/vim-nerdtree-tabs'
+ Plugin 'Xuyuanp/nerdtree-git-plugin'
  Plugin 'mattn/emmet-vim'
  Plugin 'scrooloose/nerdcommenter'
  Plugin 'Lokaltog/vim-powerline'
@@ -100,12 +101,22 @@
  Plugin 'dag/vim-fish'
 
  " ~ Themes ~
- Plugin 'badwolf'
+ "Plugin 'badwolf'
+ Plugin 'morhetz/gruvbox'
+ Plugin 'mhartington/oceanic-next'
+
 
  Plugin 'sjl/vitality.vim'
  Plugin 'jceb/vim-orgmode'
  Plugin 'tpope/vim-speeddating'
 
+ " ~ Highlighting ~
+ Plugin 'sheerun/vim-polyglot'
+ let g:jsx_ext_required = 0
+ let g:javascript_plugin_jsdoc = 1
+ let g:javascript_plugin_flow = 1
+ Plugin 'othree/yajs.vim'
+ Plugin 'isRuslan/vim-es6'
 
 
  call vundle#end()            " required
@@ -147,7 +158,19 @@
  set t_Co=256
  set background=dark
 
- colorscheme badwolf
+ "colorscheme badwolf
+ "colorscheme gruvbox
+  " Theme
+  syntax enable
+  " for vim 7
+  set t_Co=256
+
+  " for vim 8
+  if (has("termguicolors"))
+  set termguicolors
+  endif
+
+  colorscheme OceanicNext
 
  syntax enable
 
@@ -171,6 +194,16 @@
  if !exists('g:airline_symbols')
    let g:airline_symbols = {}
  endif
+
+ if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+ endif
+
  "Setting here the symbols was the only way I found to
  " show the glyphs in the statusline (got at
  " https://github.com/bling/vim-airline/issues/76?source=cc)
@@ -182,6 +215,9 @@
  let g:airline_symbols.readonly = '⭤'
  let g:airline_symbols.liner    = '⭡'
 
+ "Enabling jsx highlight plugin to works with .js
+ let g:jsx_ext_required = 0
+
  " ~ ctrlp.vim ~
  set wildignore +=*.git
  set wildignore +=*.svn
@@ -190,7 +226,7 @@
  set wildignore +=.bundle
  set wildignore +=node_modules/**
  set wildignore +=tmp/**
- let g:ctrlp_custom_ignore = { 'dir': 'tmp\|.sass-cache\|file_repository', 'file': '\.DS_Store' }
+ let g:ctrlp_custom_ignore = { 'dir': 'tmp\|.sass-cache\|file_repository\|node_modules', 'file': '\.DS_Store' }
 
  let g:ctrlp_max_height=15
  let g:ctrlp_jump_to_buffer=2
@@ -217,6 +253,7 @@
 
  " ~ Syntastic ~
  let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['scss', 'sass'] }
+ let g:syntastic_javascript_checkers = ['eslint']
 
 " -- General Mappings ----
 
