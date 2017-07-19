@@ -101,6 +101,11 @@ eval (direnv hook fish)
 set fish_greeting ""
 set fish_color_command "green"
 
+function colors_available
+  for i in (seq 1 255)
+    printf '\x1b[38;5;'$i'mcolour'$i'\n'
+  end
+end
 
 
 ###################
@@ -245,7 +250,8 @@ end
 ###################
 # Aliases
 ###################
-alias vim   "nvim"
+alias vim   "vim"
+#alias vim   "nvim"
 alias vlc   "/opt/homebrew-cask/Caskroom/vlc/2.2.1/VLC.app/Contents/MacOS/VLC"
 alias git   "hub"
 
@@ -382,5 +388,5 @@ alias dc "docker-compose"
 #################################################
 # Trabescripts
 #################################################
-set -x PATH ./bin $HOME/code/trabe-scripts/trabe/bin $PATH
-trabe init | source
+set -gx PATH ./bin $HOME/code/trabe-scripts/trabe/bin $PATH
+#trabe init | source
