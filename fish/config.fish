@@ -390,3 +390,10 @@ alias dc "docker-compose"
 #################################################
 set -gx PATH ./bin $HOME/code/trabe-scripts/trabe/bin $PATH
 #trabe init | source
+
+#################################################
+# SSH
+#################################################
+function ssh
+  env TERM=xterm ssh $argv
+end
