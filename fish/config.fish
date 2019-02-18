@@ -34,66 +34,6 @@ set -gx GIT_EDITOR "vim"
 set -gx GREP_OPTIONS "--color=auto"
 set -gx CDPATH . "$HOME/code"
 
-#  set -x M2_REPO $HOME/.m2/repository
-#  set -x M2_HOME $SLASH_HOME/apache-maven-3.2.3
-#  __add_to_path $M2_HOME/bin
-#  __add_to_path $M2_REPO
-
-
-setenv PATH $HOME/.rbenv/shims /usr/local/bin $PATH
-setenv RBENV_SHELL fish
-. '/usr/local/Cellar/rbenv/HEAD/libexec/../completions/rbenv.fish'
-command rbenv rehash 2>/dev/null
-function rbenv
-  set command $argv[1]
-  set -e argv[1]
-
-  switch "$command"
-  case rehash shell
-    . (rbenv "sh-$command" $argv|psub)
-  case '*'
-    command rbenv "$command" $argv
-  end
-end
-
-
-set -x NDENV_ROOT $HOME/.ndenv
-__add_to_path $NDENV_ROOT/bin
-__add_to_path $NDENV_ROOT/shims
-ndenv rehash
-
-set -x EXENV_ROOT $HOME/.exenv
-__add_to_path $EXENV_ROOT/bin
-__add_to_path $EXENV_ROOT/shims
-exenv rehash
-
-set -x PYENV_ROOT $HOME/.pyenv
-__add_to_path $PYENV_ROOT/bin
-__add_to_path $PYENV_ROOT/shims
-pyenv rehash
-
-set PATH $HOME/.jenv/shims $PATH
-command jenv rehash 2>/dev/null
-function jenv
-  set cmd $argv[1]
-  set arg ""
-  if test (count $argv) -gt 1
-    # Great... fish first array index is ... 1 !
-    set arg $argv[2..-1]
-  end
-
-  switch "$cmd"
-    case enable-plugin rehash shell shell-options
-        set script (jenv "sh-$cmd" "$arg")
-        eval $script
-    case '*'
-        command jenv $cmd $arg
-    end
-end
-
-eval (direnv hook fish)
-
-
 
 ###################
 # Colors
@@ -121,22 +61,6 @@ function __prompt_pwd
   echo -n ' '(set_color green)(pwd)(set_color normal)
 end
 
-function __rb_prompt
-  echo -n (set_color red)''(rbenv version | awk '{print $1}')(set_color normal)
-end
-
-function __jenv_prompt
-  echo -n (jenv version | awk '{print $1}')
-end
-
-function __nd_prompt
-  echo -n (set_color green)''(ndenv version | awk '{print $1}')(set_color normal)
-end
-
-function __ex_prompt
-  echo -n (set_color blue)''(exenv version | awk '{print $1}')(set_color normal)
-end
-
 set __fish_git_prompt_color 'magenta'
 set __fish_git_prompt_show_informative_status 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
@@ -160,13 +84,6 @@ function fish_prompt
 end
 
 function fish_right_prompt
-  __jenv_prompt
-  echo "|"
-  __nd_prompt
-  echo "|"
-  __rb_prompt
-  echo "|"
-  __ex_prompt
   set -l st $status
   if [ $st != 0 ];
     echo (set_color red) ↵ $st(set_color normal)
@@ -255,33 +172,6 @@ alias vim   "vim"
 alias vlc   "/opt/homebrew-cask/Caskroom/vlc/2.2.1/VLC.app/Contents/MacOS/VLC"
 alias git   "hub"
 
-
-
-#################################################
-# Ranger
-#################################################
-# An awesome console file manager Yay! https://github.com/hut/ranger
-
-####################
-# Ranger-cd
-###################
-function ranger-cd
-    set tempfile '/tmp/ranger-cd'
-    ranger --choosedir=$tempfile (pwd)
-
-    if test -f $tempfile
-        if test (cat $tempfile) != (pwd)
-            cd (cat $tempfile)
-        end
-    end
-    rm -f $tempfile
-end
-
-####################
-# Ranger-aliases
-###################
-alias r     "ranger"
-alias rr    "ranger-cd"
 
 
 
