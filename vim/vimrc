@@ -5,14 +5,15 @@
  set nocompatible              " be iMproved, required
  filetype off                  " required
 
+call plug#begin('~/.vim/plugged')
  " set the runtime path to include Vundle and initialize
- set rtp+=~/.config/nvim/bundle/Vundle.vim
- call vundle#begin()
+ " set rtp+=~/.config/nvim/bundle/Vundle.vim
+ " call vundle#begin()
  " alternatively, pass a path where Vundle should install plugins
  "call vundle#begin('~/some/path/here')
 
  " let Vundle manage Vundle, required
- Plugin 'VundleVim/Vundle.vim'
+ " Plugin 'VundleVim/Vundle.vim'
 
  " -- Leader key -----
  let mapleader="ñ"
@@ -65,66 +66,66 @@
  let g:ruby_path = system('echo $HOME/.rbenv/shims')
 
  " ~ Languages ~
- Plugin 'vim-ruby/vim-ruby'
- Plugin 'vim-coffee-script'
- Plugin 'Markdown'
- Plugin 'tpope/vim-rails'
- Plugin 'elixir-lang/vim-elixir'
- Plugin 'elmcast/elm-vim'
+ Plug 'vim-ruby/vim-ruby'
+ Plug 'plasticboy/vim-markdown'
+ Plug 'tpope/vim-rails'
+ Plug 'elixir-lang/vim-elixir'
+ Plug 'elmcast/elm-vim'
 
 
  " ~ Utils ~
- Plugin 'The-NERD-tree'
- Plugin 'jistr/vim-nerdtree-tabs'
- Plugin 'Xuyuanp/nerdtree-git-plugin'
- Plugin 'mattn/emmet-vim'
- Plugin 'scrooloose/nerdcommenter'
- Plugin 'Lokaltog/vim-powerline'
- Plugin 'bling/vim-airline'
- Plugin 'ctrlp.vim'
- Plugin 'ZoomWin'
- Plugin 'surround.vim'
- Plugin 'repeat.vim'
- Plugin 'tpope/vim-unimpaired'
- Plugin 'tomtom/quickfixsigns_vim'
- Plugin 'tpope/vim-fugitive'
- Plugin 'ervandew/supertab'
- Plugin 'rking/ag.vim'
- Plugin 'Syntastic'
- Plugin 'kana/vim-textobj-user'
- Plugin 'kana/vim-textobj-line'
- Plugin 'tpope/vim-eunuch'
- Plugin 'tpope/vim-abolish'
- Plugin 'nelstrom/vim-qargs'
- Plugin 'godlygeek/tabular'
- Plugin 'tpope/vim-jdaddy'
- Plugin 'dag/vim-fish'
- Plugin 'sbdchd/neoformat'
- "Plugin 'rafi/vim-badge'
- "Plugin 'itchyny/vim-gitbranch'
- "Plugin 'w0rp/ale'
- "Plugin 'git@bitbucket.org:trabe/tb_statusline.vim.git'
+ Plug 'scrooloose/nerdtree'
+ Plug 'jistr/vim-nerdtree-tabs'
+ Plug 'Xuyuanp/nerdtree-git-plugin'
+ Plug 'mattn/emmet-vim'
+ Plug 'scrooloose/nerdcommenter'
+ Plug 'Lokaltog/vim-powerline'
+ Plug 'bling/vim-airline'
+ Plug 'kien/ctrlp.vim'
+ Plug 'tpope/vim-surround'
+ Plug 'tpope/vim-repeat'
+ Plug 'tpope/vim-unimpaired'
+ Plug 'tomtom/quickfixsigns_vim'
+ Plug 'tpope/vim-fugitive'
+ Plug 'ervandew/supertab'
+ Plug 'rking/ag.vim'
+ Plug 'vim-syntastic/syntastic'
+ Plug 'kana/vim-textobj-user'
+ Plug 'kana/vim-textobj-line'
+ Plug 'tpope/vim-eunuch'
+ Plug 'tpope/vim-abolish'
+ Plug 'nelstrom/vim-qargs'
+ Plug 'godlygeek/tabular'
+ Plug 'tpope/vim-jdaddy'
+ Plug 'dag/vim-fish'
+ Plug 'sbdchd/neoformat'
+ "Plug 'rafi/vim-badge'
+ "Plug 'itchyny/vim-gitbranch'
+ "Plug 'w0rp/ale'
+ "Plug 'git@bitbucket.org:trabe/tb_statusline.vim.git'
 
  " ~ Themes ~
- "Plugin 'badwolf'
- Plugin 'morhetz/gruvbox'
- Plugin 'lifepillar/vim-solarized8'
- Plugin 'mhartington/oceanic-next'
+ "Plug 'badwolf'
+ Plug 'morhetz/gruvbox'
+ Plug 'lifepillar/vim-solarized8'
+ Plug 'mhartington/oceanic-next'
 
- Plugin 'sjl/vitality.vim'
- Plugin 'jceb/vim-orgmode'
- Plugin 'tpope/vim-speeddating'
+ Plug 'sjl/vitality.vim'
+ Plug 'jceb/vim-orgmode'
+ Plug 'tpope/vim-speeddating'
 
  " ~ Highlighting ~
- Plugin 'sheerun/vim-polyglot'
+ Plug 'sheerun/vim-polyglot'
  let g:jsx_ext_required = 0
  let g:javascript_plugin_jsdoc = 1
  let g:javascript_plugin_flow = 1
- Plugin 'othree/yajs.vim'
- Plugin 'isRuslan/vim-es6'
+ Plug 'othree/yajs.vim'
+ Plug 'isRuslan/vim-es6'
 
 
- call vundle#end()            " required
+" call vundle#end()            " required
+ call plug#end()
+
  filetype plugin indent on    " required
 
  syntax enable
@@ -166,7 +167,7 @@
 
  "colorscheme badwolf
  "colorscheme gruvbox
- colorscheme solarized8_dark
+ colorscheme solarized8
 
  highlight NonText guifg=#333333
  highlight SpecialKey guibg=#555555 guifg=white
