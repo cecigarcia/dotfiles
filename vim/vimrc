@@ -5,6 +5,8 @@
  set nocompatible              " be iMproved, required
  filetype off                  " required
 
+ "set termguicolors
+
 call plug#begin('~/.vim/plugged')
  " set the runtime path to include Vundle and initialize
  " set rtp+=~/.config/nvim/bundle/Vundle.vim
@@ -107,7 +109,8 @@ call plug#begin('~/.vim/plugged')
  " ~ Themes ~
  "Plug 'badwolf'
  Plug 'morhetz/gruvbox'
- Plug 'lifepillar/vim-solarized8'
+ "Plug 'lifepillar/vim-solarized8'
+ Plug 'altercation/vim-colors-solarized'
  Plug 'mhartington/oceanic-next'
 
  Plug 'sjl/vitality.vim'
@@ -121,7 +124,6 @@ call plug#begin('~/.vim/plugged')
  let g:javascript_plugin_flow = 1
  Plug 'othree/yajs.vim'
  Plug 'isRuslan/vim-es6'
-
 
 " call vundle#end()            " required
  call plug#end()
@@ -161,13 +163,13 @@ call plug#begin('~/.vim/plugged')
 
  set lazyredraw
 
- "set t_Co=256
+ set t_Co=256
  set background=dark
  syntax enable
 
  "colorscheme badwolf
  "colorscheme gruvbox
- colorscheme solarized8
+ colorscheme solarized
 
  highlight NonText guifg=#333333
  highlight SpecialKey guibg=#555555 guifg=white
