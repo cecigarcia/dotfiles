@@ -190,7 +190,7 @@ end
 # Git-Aliases
 ###################
 alias g "git"
-alias gx "gitx"
+alias gx "fork"
 
 
 
@@ -252,25 +252,10 @@ function __update_docker_host
     end
 end
 
-####################
-# Functions
-###################
-function dm-load
-    if test (count $argv) = 1
-        docker-machine env $argv[1] | source
-        set -gx DOCKER_TLS_VERIFY $DOCKER_TLS_VERIFY
-        set -gx DOCKER_CERT_PATH $DOCKER_CERT_PATH
-        set -gx DOCKER_HOST $DOCKER_HOST
-        __update_docker_host
-    else
-        echo "Usage: docker-machine-load <machine name>"
-    end
-end
 
 ####################
 # Aliases
 ###################
-alias dm "docker-machine"
 alias dc "docker-compose"
 
 
@@ -278,8 +263,14 @@ alias dc "docker-compose"
 #################################################
 # Trabescripts
 #################################################
-set -gx PATH ./bin $HOME/code/trabe-scripts/trabe/bin $PATH
+set -gx PATH  $HOME/code/trabe-scripts/trabe/bin $PATH
 #trabe init | source
+
+#################################################
+# Node
+#################################################
+set -gx PATH ./node_modules/.bin $PATH
+
 
 #################################################
 # SSH
@@ -287,3 +278,9 @@ set -gx PATH ./bin $HOME/code/trabe-scripts/trabe/bin $PATH
 function ssh
   env TERM=xterm ssh $argv
 end
+
+#################################################
+# OTHERS
+#################################################
+status --is-interactive; and source (nodenv init -|psub)
+status --is-interactive; and source (rbenv init -|psub)
