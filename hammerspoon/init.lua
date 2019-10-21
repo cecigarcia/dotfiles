@@ -1,5 +1,6 @@
 local window = require "window"
 local spotify = require "spotify"
+local emoji = require "emoji"
 local Spacebar = require "modal/spacebar"
 
 -- Reload configuration
@@ -23,6 +24,7 @@ local key = Spacebar.new {
           {"s", "open", spotify.focus},
           {"space", "play/pause", spotify.playpause}
       }},
+      {"e", "emoji", function() emoji.emoji_chooser:show() end},
       {"w", "window mode", {
           {"h", "push left", window.pushWindowLeft, {modal = "stay"}},
           {"j", "push down", window.pushWindowDown, {modal = "stay"}},
