@@ -1,6 +1,7 @@
 [user]
   name = Cecilia Garcia
-  email = cecilia.garcia@trabesoluciones.com
+	email = cecilia.garcia@trabe.io
+  signingkey = 71E1EBDEB86DACC8
 
 [core]
   editor = /usr/bin/vim
@@ -26,7 +27,7 @@
   tags = tag -l
   remotes = remote -v
   branches = branch -a
-  punch = push --force
+  punch = push --force-with-lease
   amend = commit --amend -C HEAD
   reword = commit --amend
   rmb = branch -d
@@ -42,10 +43,16 @@
   ap = add --patch
 
 [push]
-  default = current
+  default = simple
 
 [url "git@bitbucket.org:trabe/"]
   insteadOf = trabe:
 
 [url "git@bitbucket.org:cecig/"]
   insteadOf = me:
+
+[commit]
+  gpgsign = true
+
+[includeIf "gitdir:~/code/itx/**/"]
+  path = /Users/ceci/dotfiles/git/config.itx

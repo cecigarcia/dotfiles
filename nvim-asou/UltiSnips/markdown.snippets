@@ -1,0 +1,30 @@
+snippet fec "fenced code block" b
+\`\`\`
+$0
+\`\`\`
+endsnippet
+
+global !p
+def convert(name):
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1-\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1-\2', s1).lower()
+endglobal
+
+snippet vd "victory docs"
+- [\`Victory${1}\`](https://formidable.com/open-source/victory/docs/victory-`!p snip.rv = convert(t[1])`/)
+$0
+endsnippet
+
+snippet vl "victory link"
+[\`${VISUAL}\`](https://formidable.com/open-source/victory/docs/`!p snip.rv = convert(snip.v.text)`/)
+endsnippet
+
+snippet lt "LinkTo" i
+<LinkTo kind="$1" />$0
+endsnippet
+
+snippet fec "fenced code block" b
+\`\`\`$1
+$0
+\`\`\`
+endsnippet

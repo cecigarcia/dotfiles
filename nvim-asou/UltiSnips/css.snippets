@@ -1,0 +1,37 @@
+snippet ou "outline" b
+outline: 1px solid ${1:red};$0
+endsnippet
+
+snippet ch "center horizontal" b
+left: 50%;
+transform: translateX(-50%);
+endsnippet
+
+snippet cv "center vertical" b
+top: 50%;
+transform: translateY(-50%);
+endsnippet
+
+snippet v "insert var expression" w
+var(--$0)
+endsnippet
+	
+snippet dv "define var"
+--$1: $0;
+endsnippet
+
+snippet vc "inser color var expression" w
+var(--color-palette-$1)$0
+endsnippet
+
+
+snippet col "inser color function" w
+color($1${2:" "});$0
+endsnippet
+
+snippet def "define BEM component" w
+/** @define ${1} */
+.$1 {
+  $0
+}
+endsnippet

@@ -1,0 +1,20 @@
+{
+  "componentDidMount" : {
+    "kind": "f"
+  },
+  "componentWillReceiveProps" : {
+    "kind": "f"
+  },
+  "shouldComponentUpdate" : {
+    "kind": "f"
+  },
+  "componentWillUpdate" : {
+    "kind": "f"
+  },
+  "componentDidUpdate" : {
+    "kind": "f"
+  },
+  "componentWillUnmount" : {
+    "kind": "f"
+  }
+}

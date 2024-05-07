@@ -167,8 +167,10 @@ end
 ###################
 # Aliases
 ###################
-alias vim   "vim"
-#alias vim   "nvim"
+#alias vim   "vim"
+alias vim   "nvim"
+#alias vi "vim"
+#alias vim "nvim"
 alias vlc   "/opt/homebrew-cask/Caskroom/vlc/2.2.1/VLC.app/Contents/MacOS/VLC"
 alias git   "hub"
 

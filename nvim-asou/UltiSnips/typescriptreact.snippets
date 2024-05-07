@@ -1,0 +1,9 @@
+snippet ir "react template"
+import * as React from "react";
+
+const ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('-'))`} = (${2:\{$3\}}):JSX.Element => {
+  $0
+}
+
+export default $1;
+endsnippet

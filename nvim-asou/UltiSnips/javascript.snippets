@@ -1,0 +1,330 @@
+
+snippet imp "import" b
+import `!p
+def formatVariableName(path):
+	lastPart = path.split('/')[-1]
+	if lastPart == 'underscore' or lastPart == 'lodash':
+		return '_'
+	elif lastPart == 'jquery':
+		return '$'
+	else:
+		return re.sub(r'[_\-]', '', lastPart.title())
+snip.rv = formatVariableName(t[1])
+` from "${1}";$0
+endsnippet
+
+snippet iimp "import non default" b
+import {$1} from "$2";
+$0
+endsnippet
+
+snippet rt "react template"
+import React from "react";
+import PropTypes from "prop-types";
+import cn from "classnames";
+import classes from "./styles.module.css";
+
+const ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('-'))`} = (${2:\{$3\}}) => $0
+
+export default $1;
+endsnippet
+
+snippet me "module.exports"
+module.exports = $0
+endsnippet
+
+snippet ir "Import React" b
+import React${1:, \{ ${2:Component} \}} from "react";
+endsnippet
+
+snippet iras "Import * as React" b
+import * as React from "react";
+endsnippet
+
+snippet ip "Import PropTypes" b
+import PropTypes from "prop-types";
+endsnippet
+
+snippet irn "Import from React Native" b
+import \{ ${1} \} from "react-native";
+endsnippet
+
+snippet export "export" b
+${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('-'))`.propTypes = {
+};}
+
+export default ${2:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('-'))`};$0
+endsnippet
+
+snippet rcc "createClass" b
+class ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('-'))`} extends Component {
+	render() {
+		return (
+			$0
+		);
+	}
+}
+endsnippet
+
+# snippet rsc "react stateless component" b
+# const ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('-'))`} = (${2:\{$3\}}) => $0
+# endsnippet
+
+snippet rsc "react stateless component" b
+const ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('-'))`} = (${2:\{$3\}}) => {
+  $0
+};
+
+${2:$1.propTypes = {};}
+
+export default $1;
+endsnippet
+
+snippet rsty "react styled component" b
+const ${1:`!p snip.rv = ''.join(x.title() for x in re.sub('\.js$', '', snip.basename or 'ModuleName').split('-'))`} = styled.$2\`
+	$3
+\`;
+endsnippet
+
+snippet ra "react attribute"
+$1={${2:$1}}
+endsnippet
+
+snippet pt "attribute proptype"
+$1: PropTypes.$2${3:.isRequired},$0
+endsnippet
+
+snippet pd "props destructuring"
+const {$1} = this.props;
+endsnippet
+
+snippet sd "state destructuring"
+const {$1} = this.state;
+endsnippet
+
+snippet dd "generic destructuring"
+const {$1} = ${2:this$3}$0;
+endsnippet
+
+snippet cn "className"
+className=${2:"$3"}$0
+endsnippet
+
+snippet cons "constructor"
+constructor(props) {
+  super(props);
+  $1
+}
+endsnippet
+
+snippet jp "jsx prop"
+$1=\{${2:$1}\}$0
+endsnippet
+
+snippet mb "bind method"
+this.$1 = this.$1.bind(this);
+endsnippet
+
+global !p
+def formatActionName(action):
+	action = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', action)
+	action = re.sub('(.)([0-9]+)', r'\1_\2', action)
+	return re.sub('([a-z0-9])([A-Z])', r'\1_\2', action).upper()
+
+def formatActionType(action):
+	return action[:1].upper() + action[1:]
+endglobal
+
+snippet ac "action & creator"
+export const `!p
+snip.rv = formatActionName(t[1])
+` = "`!p
+snip.rv = formatActionName(t[1])
+`";
+export function $1(${2:\{$3\}}) {
+  return {
+    type: `!p
+snip.rv = formatActionName(t[1])
+`$0
+  };
+}
+endsnippet
+
+snippet sac "simple action & creator"
+export const `!p
+snip.rv = formatActionName(t[1])
+` = "`!p
+snip.rv = formatActionName(t[1])
+`";
+export const $1 = (${2:\{$3\}}) => ({
+	type: `!p
+snip.rv = formatActionName(t[1])
+`,
+	${4:payload: \{$3\}},$0
+});
+endsnippet
+
+snippet red "Reducer" b
+const $1 = (state = $2, { type, payload }) => ({
+  switch (type) {
+    $0
+    default:
+      return state;
+  }
+});
+endsnippet
+
+snippet redc "Reducer case" b
+case $1:
+  return $2;
+$0
+endsnippet
+
+snippet jst "JSON stringify" w
+JSON.stringify($1, null, "  ")$0
+endsnippet
+
+snippet pre "PRE with JSON stringifycation inside"
+<pre>
+ {JSON.stringify($1, null, "  ")}
+</pre>
+$0
+endsnippet
+
+# Tests
+
+snippet desc "describe"
+describe("$1", () => {
+  $0
+});
+endsnippet
+
+snippet cont "context"
+context("$1", () => {
+  $0
+});
+endsnippet
+
+snippet it "it"
+it("$1", () => {
+  $0
+});
+endsnippet
+
+snippet ito "it.only"
+it.only("$1", () => {
+  $0
+});
+endsnippet
+
+snippet exp "expect" b
+expect($1).$0
+endsnippet
+
+snippet bef "beforeEach" b
+beforeEach(() => { $1 });$0
+endsnippet
+
+# Generic ES6-7
+snippet => "Arrow function"
+const $1 = ${2:($3)} => ${4:\{
+  $0
+\};}
+endsnippet
+
+snippet l "Arrow function, no const" w
+($1) => ${2:\{$0\}}
+endsnippet
+
+snippet ptn "PropTypes.node"
+PropTypes.node$0,
+endsnippet
+
+snippet ptf "PropTypes.func"
+PropTypes.func$0,
+endsnippet
+
+snippet ptsh "PropTypes.shape"
+PropTypes.shape({$0}),
+endsnippet
+
+snippet ptex "PropTypes.exact"
+PropTypes.exact({$0}),
+endsnippet
+
+snippet ptoo "PropTypes.objectOf"
+PropTypes.objectOf($0),
+endsnippet
+
+snippet ptao "PropTypes.arrayOf"
+PropTypes.arrayOf($0),
+endsnippet
+
+snippet cl "console.log"
+console.log($0);
+endsnippet
+
+snippet clv "console.log var"
+console.log("$1", $1);$0
+endsnippet
+
+snippet imc "import material UI core component"
+import $1 from "@material-ui/core/$1";$0
+endsnippet
+
+snippet rctx "React create context"
+import React, { useContext, createContext } from "react";
+
+const $1Context = createContext(null);
+
+export const use$1 = () => {
+  const value = useContext($1Context);
+
+  if (value === null) {
+	  throw new Error("use$1 must be used from a descendant of $1Provider");
+  }
+
+	return value;
+};
+
+const $1Provider = ({ children, value }) => {
+  return <$1Context.Provider value={value}>{children}</$1Context.Provider>;
+};
+
+$1Provider.propTypes = {};
+
+export default $1Provider;
+endsnippet
+
+snippet mw "Koa middleware"
+async (ctx, next) => {
+  $0
+	await next();
+}
+endsnippet
+
+snippet us "use state"
+const [$1, set`!p
+snip.rv = t[1][:1].upper() + t[1][1:]`] = useState($2);$0
+endsnippet
+
+snippet ins "instrument"
+const { registerInstrumenter } = require("amiga-services-core");
+
+registerInstrumenter("fetch.start")(console.log)
+// registerInstrumenter("fetch.sucess")(console.log)
+// registerInstrumenter("fetch.error")(console.log)
+endsnippet
+
+snippet ima "import amiga"
+import $2 from "@amiga-fwk-web/$1";$0
+endsnippet
+
+snippet rtsc "react TS component"
+type $1Props = {
+  $0
+}
+
+const $1 = (props: $1Props): JSX.Element => {
+}
+endsnippet
